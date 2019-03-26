@@ -1,17 +1,21 @@
 import Search from './models/Search'
+import * as searchView from './views/searchView'
+
+import { elements } from './views/base'
 
 /**
  * - Search objet
- * -Current recipe object
- * Shopping list object
- * liked recipes
+ * - Current recipe object
+ * - Shopping list object
+ * - Liked recipes
  */
 
 const state = {}
 
 const controleSearch = async () => {
     // 1) Get query from view
-    const query = 'pizza' // TODO
+    const query = 'pizza'
+    console.log(query)
 
     if (query) {
         // 2 New search object and add to state
@@ -28,7 +32,8 @@ const controleSearch = async () => {
 
 }
 
-document.querySelector('.search').addEventListener('submit', e => {
+elements.searchForm.querySelector('.search').addEventListener('submit', e => {
     e.preventDefault()
     controleSearch()
+    console.log(elements.searchForm)
 })
