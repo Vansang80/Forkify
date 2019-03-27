@@ -26,7 +26,7 @@ const controleSearch = async () => {
         await state.search.getResults()
 
         // 5 render results on UI
-        console.log(state.search.result)
+        searchView.renderResult(state.search.result)
     }
 
 }
@@ -34,5 +34,5 @@ const controleSearch = async () => {
 elements.searchForm.addEventListener('submit', e => {
     e.preventDefault()
     controleSearch()
-    console.log(elements.searchForm)
+    console.log(state, 'state')
 })
