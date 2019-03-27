@@ -21,12 +21,15 @@ const controleSearch = async () => {
         state.search = new Search(query)
 
         // 3 Prepare UI for results
+        searchView.clearInput()
+        searchView.clearResults()
+
 
         // 4 Search for recipes
         await state.search.getResults()
 
         // 5 render results on UI
-        searchView.renderResult(state.search.result)
+        searchView.renderResults(state.search.result)
     }
 
 }
@@ -34,5 +37,4 @@ const controleSearch = async () => {
 elements.searchForm.addEventListener('submit', e => {
     e.preventDefault()
     controleSearch()
-    console.log(state, 'state')
 })
