@@ -1,5 +1,9 @@
 import Search from './models/Search'
+import Recipe from './models/Recipe'
 import * as searchView from './views/searchView'
+
+import cors from 'cors'
+cors()
 
 import { elements, renderLoader, clearLoader } from './views/base'
 
@@ -51,3 +55,11 @@ elements.searchResPages.addEventListener('click', e => {
         console.log(btn)
     }
 })
+
+/*
+    Controller Recipe
+*/
+
+const r = new Recipe(35477)
+console.log(r.getRecipe())
+console.log(r)

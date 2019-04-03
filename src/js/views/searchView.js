@@ -16,10 +16,10 @@ const limitRecipeTitle = (title, limit = 17) => {
             if (acc + cur.length <= limit) {
                 newTtile.push(cur)
             }
-     
+
             return acc + cur.length
         }, 0)
-        
+
         return `${newTtile.join(' ')} ...`
     }
     return title
@@ -70,7 +70,8 @@ const renderButtons = (page, numResults, resPerPage) => {
 
     }
 
-    elements.searchResPages.insertAdjacentHTML('afterbegin', button)
+    if (button)
+        elements.searchResPages.insertAdjacentHTML('afterbegin', button)
 }
 
 export const renderResults = (recipes, page = 1, resPerpage = 10) => {
