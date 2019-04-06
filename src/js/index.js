@@ -1,6 +1,8 @@
 import Search from './models/Search'
 import Recipe from './models/Recipe'
 import * as searchView from './views/searchView'
+import * as recipeView from './views/recipeView'
+
 
 import cors from 'cors'
 cors()
@@ -32,11 +34,11 @@ const controleSearch = async () => {
         try {
             // 4 Search for recipes
             await state.search.getResults()
-    
+
             // 5 render results on UI
             clearLoader()
             searchView.renderResults(state.search.result)
-        } catch(err) {
+        } catch (err) {
             alert('Something wrong')
             clearLoader()
         }
@@ -71,24 +73,27 @@ const controlRecipe = async () => {
 
     if (id) {
         // Prepare UI for changes
-
+        recipeView.clearRecipe()
+        renderLoader(elements.recipe);
         // Create new recipe object
         state.recipe = new Recipe(id)
-        
+
         try {
             // Get recipe data
             await state.recipe.getRecipe()
-    
+            state.recipe.parseIngredients();
+
             // Calculate servings and time
             state.recipe.caclTime()
             state.recipe.caclServings()
-    
+
             // Render recipe
-            console.log(state.recipe)
-        } catch(error) {
+            clearLoader();
+            recipeView.renderRecipe(state.recipe)
+        } catch (error) {
             alert('Error processing')
         }
-    } 
-} 
+    }
+}
 
 ['hashchange', 'load'].forEach(event => window.addEventListener(event, controlRecipe))
